@@ -28,6 +28,7 @@ var currentItem = {
 };
 
 var ide='-1';
+var ids='-1';
 var user;
 
 var geoItem = {
@@ -111,6 +112,7 @@ App.prototype = {
                                                       //localStorage.setItem('dataDelivery', JSON.stringify(dataDelivery));
                                                       //localStorage.getItem('dataDelivery');
                                                       ide = info.ide;
+                                                      ids = info.ids;
                                                       $.mobile.changePage("#pageactive", { transition: "flip" });
                                                   }else {
                                                       showAlert('Usuario o contraseña incorrecta');
@@ -352,6 +354,7 @@ App.prototype = {
             var uuidR = guid();
             localStorageNew.forEach(function(item,index){
                 item.ide = ide;
+                item.ids = ids;
                 item.uuidr = uuidR;
                 item.plat= geoItem.latitude;
                 item.plon= geoItem.longitude;
