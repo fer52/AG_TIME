@@ -456,6 +456,8 @@ function updateStateItemActive(imagenURI){
               }
           });
     
+    uploadDataImageDelivery(currentCodeMoveStep.uuid,imagenURI);
+    
     currentCodeMoveStep=null;
         
     //indexCurrent = -1;
@@ -726,6 +728,26 @@ function uploadDataImageFinish(uuidRecord,imageURI) {
 
     var ft = new FileTransfer();
     ft.upload(imageURI, "http://agensedomicilio.agense.net/uploadImageFinish.php", imageWin, imageFail, options);               
+    
+    //$.mobile.changePage("#home", { transition: "flip" });
+}
+
+function uploadDataImageDelivery(uuidRecord,imageURI) {
+    
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+
+    var params = new Object();
+        
+    params.uuidRecord = uuidRecord;
+
+    options.params = params;
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI, "http://agensedomicilio.agense.net/uploadImageDelivery.php", imageWin, imageFail, options);               
     
     //$.mobile.changePage("#home", { transition: "flip" });
 }
